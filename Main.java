@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-  static List<Contato> contatos = new ArrayList<>();
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    Agenda agenda = new Agenda();
     int opcao;
     do {
       renderizarMenu();
@@ -13,13 +11,13 @@ public class Main {
       scanner.nextLine();
       switch (opcao) {
         case 1:
-          listarContatos();
+          listarContatos(agenda);
           break;
         case 2:
-          cadastrarContato(scanner);
+          cadastrarContato(scanner, agenda);
           break;
         case 3:
-          deletarContato(scanner);
+          deletarContato(scanner, agenda);
           break;
         default:
           System.err.println("Opção inválida.");
@@ -28,25 +26,21 @@ public class Main {
     scanner.close();
   }
 
-  private static void deletarContato(Scanner scanner) {
+  private static void deletarContato(Scanner scanner, Agenda agenda) {
     System.out.println("Digite o numero do contato para DELETAR");
     int indiceDeletar = scanner.nextInt();
     scanner.nextLine();
-    if (indiceDeletar > 0 && indiceDeletar <= contatos.size()) {
-      contatos.remove(indiceDeletar - 1);
-      System.out.println("Contato deletado com sucesso.");
-    } else {
-      System.out.println("Número de contato inválido.");
-    }
+    agenda.deletarContato(indiceDeletar);
+    
   }
 
-  private static void cadastrarContato(Scanner scanner) {
+  private static void cadastrarContato(Scanner scanner, Agenda agenda) {
     System.out.println("Digite o nome");
     String nome = scanner.nextLine();
     System.out.println("Digite o telefone");
     String telefone = scanner.nextLine();
     var contato = new Contato(nome, telefone);
-    contatos.add(contato);
+    agenda.adicionarContato(contato);
   }
 
   private static void renderizarMenu() {
@@ -57,14 +51,8 @@ public class Main {
     System.out.println("4. Encerrar Programa");
     System.out.print("Escolha uma opção: ");
   }
-  private static void listarContatos() {
+  private static void listarContatos(Agenda agenda) {
     System.out.println("\nLista de contatos:");
-    if (contatos.isEmpty()) {
-      System.out.println("Nenhum contato cadastrado.");
-    } else {
-      for (int i = 0; i < contatos.size(); i++) {
-        System.out.println((i + 1) + " - " + contatos.get(i).getNome() + " " + contatos.get(i).getTelefone());
-      }
-    }
+    agenda.listarContatos();
   }
 }
