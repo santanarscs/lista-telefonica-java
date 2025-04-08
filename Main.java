@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    Agenda agenda = new Agenda();
+    ContatoRepository repository = new ContatoRepositoryFileImpl();
+    AgendaService agenda = new AgendaService(repository);
     int opcao;
     do {
       renderizarMenu();
@@ -26,15 +27,15 @@ public class Main {
     scanner.close();
   }
 
-  private static void deletarContato(Scanner scanner, Agenda agenda) {
+  private static void deletarContato(Scanner scanner, AgendaService agenda) {
     System.out.println("Digite o numero do contato para DELETAR");
-    int indiceDeletar = scanner.nextInt();
+    long id = scanner.nextLong();
     scanner.nextLine();
-    agenda.deletarContato(indiceDeletar);
+    agenda.deletarContato(id);
     
   }
 
-  private static void cadastrarContato(Scanner scanner, Agenda agenda) {
+  private static void cadastrarContato(Scanner scanner, AgendaService agenda) {
     System.out.println("Digite o nome");
     String nome = scanner.nextLine();
     System.out.println("Digite o telefone");
@@ -51,7 +52,7 @@ public class Main {
     System.out.println("4. Encerrar Programa");
     System.out.print("Escolha uma opção: ");
   }
-  private static void listarContatos(Agenda agenda) {
+  private static void listarContatos(AgendaService agenda) {
     System.out.println("\nLista de contatos:");
     agenda.listarContatos();
   }
