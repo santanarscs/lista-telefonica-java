@@ -1,4 +1,4 @@
-package src.repository.impl;
+package src.main.java.repository.impl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,16 +9,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import src.model.Contato;
-import src.repository.ContatoRepository;
+import src.main.java.model.Contato;
+import src.main.java.repository.ContatoRepository;
 
 public class ContatoRepositoryFileImpl implements ContatoRepository {
-  private static final String ARQUIVO = "contatos.txt";
+  private final String caminhoArquivo;
   private static final long VALOR_MAXIMO = 999;
-  private static Random random = new Random();
+  private static final Random random = new Random();
+
+  public ContatoRepositoryFileImpl(){
+    caminhoArquivo = getClass().getClassLoader().getResource("contatos.txt").getFile();
+  }
 
   public void cadastrar(Contato contato) {
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO, true))) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
       long numeroAleatorio = random.nextLong() & VALOR_MAXIMO;
       writer.write(numeroAleatorio + ";" + contato.getNome() + ";" + contato.getTelefone());
       writer.newLine();
@@ -30,7 +34,7 @@ public class ContatoRepositoryFileImpl implements ContatoRepository {
 
   public List<Contato> listarContatos() {
     List<Contato> contatos = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO))) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
       String linha;
       while ((linha = reader.readLine()) != null) {
         String[] partes = linha.split(";");
@@ -51,7 +55,7 @@ public class ContatoRepositoryFileImpl implements ContatoRepository {
     contatos.removeIf(contato -> contato.getId().equals(id));
 
     if (contatos.size() < listarContatos().size()) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo))) {
             for (Contato contato : contatos) {
                 writer.write(contato.getId() + ";" + contato.getNome() + ";" + contato.getTelefone());
                 writer.newLine();

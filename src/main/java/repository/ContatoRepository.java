@@ -1,8 +1,8 @@
-package src.repository;
+package src.main.java.repository;
 import java.util.List;
 import java.util.Optional;
 
-import src.model.Contato;
+import src.main.java.model.Contato;
 
 public interface ContatoRepository {
   public void cadastrar(Contato contato);

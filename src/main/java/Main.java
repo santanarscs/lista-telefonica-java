@@ -1,10 +1,10 @@
-package src.main;
+package src.main.java;
 import java.util.Scanner;
 
-import src.model.Contato;
-import src.repository.ContatoRepository;
-import src.repository.impl.ContatoRepositoryFileImpl;
-import src.service.AgendaService;
+import src.main.java.model.Contato;
+import src.main.java.repository.ContatoRepository;
+import src.main.java.repository.impl.ContatoRepositoryFileImpl;
+import src.main.java.service.AgendaService;
 
 public class Main {
   public static void main(String[] args) {

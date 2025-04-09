@@ -1,4 +1,4 @@
-package src.model;
+package src.main.java.model;
 public class Contato {
   private Long id;
   private String nome;

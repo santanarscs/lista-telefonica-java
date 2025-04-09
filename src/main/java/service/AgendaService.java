@@ -1,8 +1,9 @@
-package src.service;
+package src.main.java.service;
 import java.util.List;
 
-import src.model.Contato;
-import src.repository.ContatoRepository;
+import src.main.java.model.Contato;
+import src.main.java.repository.ContatoRepository;
+
 
 public class AgendaService {
 
@@ -38,12 +39,5 @@ public class AgendaService {
 
   public void deletarContato(Long id) {
     repository.deletar(id);
-    // var contatos = repository.listarContatos();
-    // if (indiceDeletar > 0 && indiceDeletar <= contatos.size()) {
-    //   contatos.remove(indiceDeletar - 1);
-    //   System.out.println("Contato deletado com sucesso.");
-    // } else {
-    //   System.out.println("Número de contato inválido.");
-    // }
   }
 }
