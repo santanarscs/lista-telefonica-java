@@ -1,5 +1,7 @@
-src/main/java/repository/impl/ContatoRepositoryFileImpl.class
 src/main/java/repository/ContatoRepository.class
-src/main/java/Main.class
 src/main/java/model/Contato.class
+src/main/java/repository/impl/ContatoRepositoryFileImpl.class
+src/main/java/Main.class
+src/main/java/singleton/DatabaseConnection.class
 src/main/java/service/AgendaService.class
+src/main/java/repository/impl/ContatoRepositoryPostgresImpl.class

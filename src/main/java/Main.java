@@ -4,12 +4,13 @@ import java.util.Scanner;
 import src.main.java.model.Contato;
 import src.main.java.repository.ContatoRepository;
 import src.main.java.repository.impl.ContatoRepositoryFileImpl;
+import src.main.java.repository.impl.ContatoRepositoryPostgresImpl;
 import src.main.java.service.AgendaService;
 
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    ContatoRepository repository = new ContatoRepositoryFileImpl();
+    ContatoRepository repository = new ContatoRepositoryPostgresImpl();
     AgendaService agenda = new AgendaService(repository);
     int opcao;
     do {
