@@ -1,3 +1,4 @@
+package src.model;
 public class Contato {
   private Long id;
   private String nome;

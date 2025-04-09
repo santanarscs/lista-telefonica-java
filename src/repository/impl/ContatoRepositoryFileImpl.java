@@ -1,3 +1,4 @@
+package src.repository.impl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -7,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+
+import src.model.Contato;
+import src.repository.ContatoRepository;
 
 public class ContatoRepositoryFileImpl implements ContatoRepository {
   private static final String ARQUIVO = "contatos.txt";

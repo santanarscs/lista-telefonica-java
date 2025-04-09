@@ -1,4 +1,10 @@
+package src.main;
 import java.util.Scanner;
+
+import src.model.Contato;
+import src.repository.ContatoRepository;
+import src.repository.impl.ContatoRepositoryFileImpl;
+import src.service.AgendaService;
 
 public class Main {
   public static void main(String[] args) {
@@ -19,6 +25,9 @@ public class Main {
           break;
         case 3:
           deletarContato(scanner, agenda);
+          break;
+        case 4:
+          scanner.close();
           break;
         default:
           System.err.println("Opção inválida.");

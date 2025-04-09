@@ -1,4 +1,8 @@
+package src.service;
 import java.util.List;
+
+import src.model.Contato;
+import src.repository.ContatoRepository;
 
 public class AgendaService {
 
