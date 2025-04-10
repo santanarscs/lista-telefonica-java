@@ -1,8 +1,8 @@
-package src.main.java.repository;
+package com.santana.repository;
 import java.util.List;
 import java.util.Optional;
 
-import src.main.java.model.Contato;
+import com.santana.model.Contato;
 
 public interface ContatoRepository {
   public void cadastrar(Contato contato);

@@ -1,16 +1,16 @@
-package src.main.java;
+package com.santana;
+
 import java.util.Scanner;
 
-import src.main.java.model.Contato;
-import src.main.java.repository.ContatoRepository;
-import src.main.java.repository.impl.ContatoRepositoryFileImpl;
-import src.main.java.repository.impl.ContatoRepositoryPostgresImpl;
-import src.main.java.service.AgendaService;
+import com.santana.model.Contato;
+import com.santana.repository.ContatoRepository;
+import com.santana.repository.impl.ContatoRepositoryFileImpl;
+import com.santana.service.AgendaService;
 
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    ContatoRepository repository = new ContatoRepositoryPostgresImpl();
+    ContatoRepository repository = new ContatoRepositoryFileImpl();
     AgendaService agenda = new AgendaService(repository);
     int opcao;
     do {

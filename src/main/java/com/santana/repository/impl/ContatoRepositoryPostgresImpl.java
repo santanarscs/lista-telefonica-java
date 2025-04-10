@@ -1,4 +1,4 @@
-package src.main.java.repository.impl;
+package com.santana.repository.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import src.main.java.model.Contato;
-import src.main.java.repository.ContatoRepository;
-import src.main.java.singleton.DatabaseConnection;
+import com.santana.model.Contato;
+import com.santana.repository.ContatoRepository;
+import com.santana.singleton.DatabaseConnection;
 
 public class ContatoRepositoryPostgresImpl implements ContatoRepository {
 
@@ -33,8 +33,14 @@ public class ContatoRepositoryPostgresImpl implements ContatoRepository {
 
   @Override
   public void deletar(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deletar'");
+    StringBuilder query = new StringBuilder("delete from contatos where id = ?");
+    try (Connection connection = DatabaseConnection.getConnection()) {
+      PreparedStatement stmt = connection.prepareStatement(query.toString());
+      stmt.setLong(1, id);
+      stmt.executeQuery();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -60,23 +66,31 @@ public class ContatoRepositoryPostgresImpl implements ContatoRepository {
 
   @Override
   public Contato buscarPorId(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+    StringBuilder query = new StringBuilder("select * from contatos where id = ?");
+    try (Connection connection = DatabaseConnection.getConnection()) {
+      PreparedStatement stmt = connection.prepareStatement(query.toString());
+      stmt.setLong(1, id);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        return new Contato(rs.getLong("id"), rs.getString("nome"), rs.getString("telefone"));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   @Override
   public Optional<Contato> buscarPorNome(String nome) {
-    Optional<Contato> contato =  Optional.empty();
+    Optional<Contato> contato = Optional.empty();
     StringBuilder query = new StringBuilder("select * from contatos where nome like ?");
     String criterioPesquisa = "%" + nome + "%";
     try (Connection connection = DatabaseConnection.getConnection()) {
       PreparedStatement stmt = connection.prepareStatement(query.toString());
-      stmt.setString(1, criterioPesquisa); 
+      stmt.setString(1, criterioPesquisa);
       ResultSet rs = stmt.executeQuery();
-      if(rs.getFetchSize() != 0) {
-        while (rs.next()) {
-          contato = Optional.of(new Contato(rs.getLong("id"), rs.getString("nome"), rs.getString("telefone")));
-        }
+      while (rs.next()) {
+        contato = Optional.of(new Contato(rs.getLong("id"), rs.getString("nome"), rs.getString("telefone")));
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -86,12 +100,12 @@ public class ContatoRepositoryPostgresImpl implements ContatoRepository {
 
   @Override
   public Optional<Contato> buscarPorTelefone(String telefone) {
-    Optional<Contato> contato =  Optional.empty();
+    Optional<Contato> contato = Optional.empty();
     StringBuilder query = new StringBuilder("select * from contatos where telefone like ?");
     String criterioPesquisa = "%" + telefone + "%";
     try (Connection connection = DatabaseConnection.getConnection()) {
       PreparedStatement stmt = connection.prepareStatement(query.toString());
-      stmt.setString(1, criterioPesquisa); 
+      stmt.setString(1, criterioPesquisa);
 
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {

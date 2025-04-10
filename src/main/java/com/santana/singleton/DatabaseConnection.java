@@ -1,4 +1,4 @@
-package src.main.java.singleton;
+package com.santana.singleton;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

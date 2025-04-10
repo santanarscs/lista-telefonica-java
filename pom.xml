@@ -34,7 +34,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>src.main.java.Main</mainClass> <!-- Nome da classe principal -->
+                    <mainClass>com.santana.Main</mainClass> <!-- Nome da classe principal -->
                 </configuration>
             </plugin>
         </plugins>

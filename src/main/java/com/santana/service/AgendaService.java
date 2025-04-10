@@ -1,8 +1,8 @@
-package src.main.java.service;
+package com.santana.service;
 import java.util.List;
 
-import src.main.java.model.Contato;
-import src.main.java.repository.ContatoRepository;
+import com.santana.model.Contato;
+import com.santana.repository.ContatoRepository;
 
 
 public class AgendaService {

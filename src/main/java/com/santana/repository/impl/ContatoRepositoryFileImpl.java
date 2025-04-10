@@ -1,4 +1,5 @@
-package src.main.java.repository.impl;
+package com.santana.repository.impl;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import src.main.java.model.Contato;
-import src.main.java.repository.ContatoRepository;
+import com.santana.model.Contato;
+import com.santana.repository.ContatoRepository;
 
 public class ContatoRepositoryFileImpl implements ContatoRepository {
   private final String caminhoArquivo;

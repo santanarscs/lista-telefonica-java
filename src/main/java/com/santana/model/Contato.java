@@ -1,4 +1,5 @@
-package src.main.java.model;
+package com.santana.model;
+
 public class Contato {
   private Long id;
   private String nome;
